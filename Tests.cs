@@ -7,6 +7,7 @@ using OfficeOpenXml;
 using System.IO;
 using System;
 using static OfficeOpenXml.ExcelErrorValue;
+using Microsoft.Office.Interop.Excel;
 
 namespace PalgirismValidation
 {
@@ -277,15 +278,20 @@ namespace PalgirismValidation
                 Parallel.For(2, rows + 1, (row) =>
                 {
 
-                    string hprl1 = (string)ws.Cells[row, 1].Value;
+                    var cell_1 = ws.Cells[row, 1];
+                    string hprl1 = (string)cell_1.Value;
 
-                    string hprl2 = (string)ws.Cells[row, 2].Value;
+                    Uri? real_h1 = cell_1?.Hyperlink ?? null;
+
+                    var cell_2 = ws.Cells[row, 2];
+                    string hprl2 = (string)cell_2.Value;
+                    Uri? real_h2 = cell_2?.Hyperlink ?? null;
 
                     int lm = Convert.ToInt32(ws.Cells[row, 3].Value);
 
                     int currIndex = row - 2;
 
-                    temp_simtyInfos[currIndex] = new SimtyInfo(hprl1, hprl2, lm, currIndex);
+                    temp_simtyInfos[currIndex] = new SimtyInfo(hprl1, hprl2, lm, currIndex, real_h1, real_h2);
 
                 });
 

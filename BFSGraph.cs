@@ -196,7 +196,7 @@ namespace PalgirismValidation
                     Tuple<
                         List<int>,              // connected ids
                         List<Tuple<int, int>>> // connetced edges
-                        >(s
+                        >(
                             Tuple.Create(connectedComponent, connectedSim),
                             avgSim,
                             connectedComponent.Count()

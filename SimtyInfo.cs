@@ -1,4 +1,5 @@
-﻿using System.Text.RegularExpressions;
+﻿using Microsoft.Office.Interop.Excel;
+using System.Text.RegularExpressions;
 
 namespace PalgirismValidation
 {
@@ -16,14 +17,23 @@ namespace PalgirismValidation
         public string hprl1;
         public string hprl2;
 
+        public Uri? real_h1, real_h2;
+
+
         public SimtyInfo(
             string hprl1,
             string hprl2,
             int line_matches,
-            int line_idx)
+            int line_idx,
+
+            Uri? real_h1 = null,
+            Uri? real_h2 = null)
         {
             this.hprl1 = hprl1;
             this.hprl2 = hprl2;
+
+            this.real_h1 = real_h1;
+            this.real_h2 = real_h2;
 
             // O(1)
             (this.v1, this.prc1) = ExtractFidAndPrc(hprl1);

@@ -34,3 +34,4 @@ K:\C#\Algo\Minimal Spaning tree\train4.1\obj\Debug\net8.0\refint\Plagiarism Vali
 K:\C#\Algo\Minimal Spaning tree\train4.1\obj\Debug\net8.0\Plagiarism Validation.pdb
 K:\C#\Algo\Minimal Spaning tree\train4.1\obj\Debug\net8.0\Plagiarism Validation.genruntimeconfig.cache
 K:\C#\Algo\Minimal Spaning tree\train4.1\obj\Debug\net8.0\ref\Plagiarism Validation.dll
+K:\C#\Algo\Minimal Spaning tree\train4.1\obj\Debug\net8.0\Plagiarism Validation.sourcelink.json

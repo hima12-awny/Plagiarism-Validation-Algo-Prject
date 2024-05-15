@@ -129,8 +129,19 @@ namespace PalgirismValidation
                         simsList.Sort();
                         foreach (var sim in simsList)
                         {
+
+                            worksheet.Cells[rowNdx, 1].SetHyperlink(sim.real_h1 ?? (new UriBuilder(sim.hprl1).Uri));
+                            worksheet.Cells[rowNdx, 2].SetHyperlink(sim.real_h2 ?? (new UriBuilder(sim.hprl2)).Uri);
+
+                            worksheet.Cells[rowNdx, 1].Style.Font.Color.SetColor(System.Drawing.Color.Blue);
+                            worksheet.Cells[rowNdx, 1].Style.Font.UnderLine = true;
+
+                            worksheet.Cells[rowNdx, 2].Style.Font.Color.SetColor(System.Drawing.Color.Blue);
+                            worksheet.Cells[rowNdx, 2].Style.Font.UnderLine = true;
+
                             worksheet.Cells[rowNdx, 1].Value = sim.hprl1;
                             worksheet.Cells[rowNdx, 2].Value = sim.hprl2;
+
                             worksheet.Cells[rowNdx, 3].Value = sim.line_matches;
                             rowNdx++;
                         }
