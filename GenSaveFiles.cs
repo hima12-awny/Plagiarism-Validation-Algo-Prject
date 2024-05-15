@@ -1,4 +1,4 @@
-﻿using System.Diagnostics;
+using System.Diagnostics;
 using OfficeOpenXml;
 
 namespace PalgirismValidation
@@ -35,11 +35,10 @@ namespace PalgirismValidation
                 Stopwatch saveFileStopwatch = new Stopwatch();
                 saveFileStopwatch.Start();
 
-
-                // sol_conntComponents_ contains All Groups
-                // so the complexty is 
-                // (G*logG) while G is number of groups
-                sol_conntComponents_.Sort();
+                //// sol_conntComponents_ contains All Groups
+                //// so the complexty is 
+                //// (G*logG) while G is number of groups
+                //sol_conntComponents_.Sort();
 
                 var sol_conntComponents = sol_conntComponents_;
 
@@ -58,7 +57,7 @@ namespace PalgirismValidation
                     // for each group G do this for
                     // this for is = O(MlogM)
 
-                    // NOTE: not all M have the same size
+                    // NOTE: Not all M have the same size
                     // so the more accurate is better
                     // the summztion for M*logM for each Group
                     Parallel.For(0, con_len, (i) => {
@@ -146,11 +145,14 @@ namespace PalgirismValidation
                             rowNdx++;
                         }
                     }
-
+       
                     string output_result_statFile = out_path[level] + $"{case_number}-mst_file.xlsx";
+
+                    worksheet.Cells.AutoFitColumns();
 
                     // Step 4: Save the Excel package to a file
                     FileInfo excelFile = new FileInfo(output_result_statFile);
+
                     excelPkg.SaveAs(excelFile);
 
                     saveFileStopwatch.Stop();
