@@ -1,4 +1,4 @@
-﻿
+
 using Excel = Microsoft.Office.Interop.Excel;
 using System.Text.RegularExpressions;
 using System.Diagnostics;
@@ -199,7 +199,6 @@ namespace PalgirismValidation
         }
 
 
-
         public (bool, double) runTestCaseN(
             ref string case_file_path, 
             string level, 
@@ -221,27 +220,55 @@ namespace PalgirismValidation
                 out loadDataTime);
 
             BFSGraph graph;
-            bool groups_passed, mst_passed = false;
+            bool groups_passed = false, mst_passed = false;
             double total_groups_time;
 
 
             GetGroups(
-                level,
-                case_number,
-                statFile_case_path,
                 simtyInfos,
                 out graph,
-                out groups_passed,
                 out total_groups_time);
 
 
             // get all components withput cycles for each connected component.
+
+            List<List<SimtyInfo>> mst_sim_infos = new List<List<SimtyInfo>>();
+
             double total_mst_time = GetMST(
                 level,
                 case_number,
                 mstFile_case_path,
                 graph,
-                ref mst_passed);
+                ref mst_passed,
+                ref mst_sim_infos);
+
+
+
+            total_groups_time += GenSaveFiles.SaveStatFileReults(ref graph.connectedComponentsAndSims, level, case_number);
+
+            if (compareStatFileResult(graph.connectedComponentsAndSims, statFile_case_path))
+            {
+
+                printOl($"  + Correct Groups Total (Algo/genSave) time: {Math.Round(total_groups_time, 5)} ms");
+                groups_passed = true;
+            }
+            else
+            {
+                printOl(" - Wrong Groups");
+            }
+
+
+            if (compareMSTFileResult(mst_sim_infos, mstFile_case_path))
+            {
+    
+                printOl($"  + Correct MST Total (Algo/genSave) time: {Math.Round(total_mst_time, 5)} ms");
+                mst_passed = true;
+            }
+            else
+            {
+                printOl(" - Wrong MST");
+            }
+
 
 
             double total_time = loadDataTime + total_groups_time + total_mst_time;
@@ -297,33 +324,6 @@ namespace PalgirismValidation
 
             }
 
-            /*using (ExcelPackage excelPks = new ExcelPackage(new FileInfo(input_case_path)))
-            {
-
-                ExcelWorksheet ws = excelPks.Workbook.Worksheets[0];
-                rows = ws.Dimension.Rows;
-
-                object[,] values = ws.Cells[1, 1, rows, 3].Value as Object[,] ?? new object[0, 0];
-
-
-                in_simtyInfos = new SimtyInfo[rows - 1];
-
-
-                Parallel.For(1, rows, (row) =>
-                {
-
-                    string hprl1 = (string)values[row, 0];
-                    string hprl2 = (string)values[row, 1];
-
-                    int lm = Convert.ToInt32(values[row, 2]);
-
-                    in_simtyInfos[row - 1] = new SimtyInfo(hprl1, hprl2, lm, row - 1);
-
-                });
-
-            }*/
-
-
             loadDataStopWatch.Stop();
             loadDataTime = loadDataStopWatch.Elapsed.TotalMilliseconds;
             printOl($"Time({loadDataTime} ms)");
@@ -332,12 +332,8 @@ namespace PalgirismValidation
         }
 
         void GetGroups(
-            string level, 
-            int case_number, 
-            string statFile_case_path,
             SimtyInfo[] simtyInfos, 
             out BFSGraph graph, 
-            out bool groups_passed, 
             out double total_groups_time)
         {
 
@@ -359,30 +355,15 @@ namespace PalgirismValidation
             List<ComponentBasedTwoItems<Tuple<List<int>, List<Tuple<int, int>>>>> sol_conneted_compnents;
             graph.getConnetedComponents(out sol_conneted_compnents);
 
+
+            // sol_conntComponents_ contains All Groups
+            // so the complexty is 
+            // (G*logG) while G is number of groups
+            graph.connectedComponentsAndSims.Sort();
+
             sol_stat_stopwatch.Stop();
-
-            // Get the elapsed time
             double sol_state_time = sol_stat_stopwatch.Elapsed.TotalMilliseconds;
-
-            groups_passed = false;
             total_groups_time = sol_state_time;
-
-            double save_statFile_time = GenSaveFiles.SaveStatFileReults(ref sol_conneted_compnents, level, case_number);
-            total_groups_time += save_statFile_time;
-
-            if (compareStatFileResult(sol_conneted_compnents, statFile_case_path))
-            {
-                printOl($" + Correct Groups Algo in     {sol_state_time} ms");
-
-                printOl($"   + Genearte/Save StateFile  {save_statFile_time} ms");
-                printOl($"   + Groups Total (Algo/genSave) time: {Math.Round(total_groups_time, 5)} ms");
-
-                groups_passed = true;
-            }
-            else
-            {
-                printOl(" - Wrong Groups");
-            }
 
             printOl();
         }
@@ -393,74 +374,87 @@ namespace PalgirismValidation
             int case_number, 
             string mstFile_case_path, 
             BFSGraph graph, 
-            ref bool mst_passed)
+            ref bool mst_passed,
+            ref List<List<SimtyInfo>> sol_sims
+            )
         {
             Stopwatch sol_mst_stopwatch = new Stopwatch();
 
             sol_mst_stopwatch.Start();
-            List<List<SimtyInfo>> sol_sims = graph.getMST();
+            sol_sims = graph.getMST();
             sol_mst_stopwatch.Stop();
 
             double sol_mst_time = sol_mst_stopwatch.Elapsed.TotalMilliseconds;
 
             double total_mst_time = sol_mst_time;
-            double save_mst_time = GenSaveFiles.SaveMSTFileReults(sol_sims, level, case_number);
-            total_mst_time += save_mst_time;
-
-            if (compareMSTFileResult(sol_sims, mstFile_case_path))
-            {
-                printOl($" + Correct MST Alog in      {sol_mst_time} ms");
-                printOl($"   + Genearte/Save MST file {save_mst_time} ms");
-
-                printOl($"   + MST Total (Algo/genSave) time: {Math.Round(total_mst_time, 5)} ms");
-
-
-                mst_passed = true;
-            }
-            else
-            {
-                printOl(" - Wrong MST");
-            }
+            total_mst_time += GenSaveFiles.SaveMSTFileReults(sol_sims, level, case_number);
 
             return total_mst_time;
         }
 
 
-        public void runSmapleTest()
+        public void runSmapleTest(int case_number=-1)
         {
             string case_file_path = $@"K:\C#\Algo\project\Plagiarism Validation\Test Cases\Sample\";
 
 
-            printOl("----------------------------------------------");
 
+            printOl("----------------------------------------------");
             printOl("Running Smaple Test:");
 
-            int passed_cases = 0;
-            float n_cases = 6;
 
-            for (int i = 1; i <= n_cases; i++)
+            if (case_number != -1)
             {
-                string curr_path = case_file_path + $"\\{i}-";
+                string curr_path = case_file_path + $"\\{case_number}-";
 
-                (bool passed, double time) = runTestCaseN(ref curr_path, "Sample", i);
+                (bool passed, double time) = runTestCaseN(ref curr_path, "Sample", case_number);
 
                 if (passed)
                 {
-                    ++passed_cases;
-                    printOl($"++ Test Case({i}/{n_cases}): PASSED in {Math.Round(time, 5)} ms");
+                    printOl($"++ Test Case({case_number}): PASSED in {Math.Round(time, 5)} ms");
                 }
                 else
                 {
-                    printOl($"-- Test Case({i}/{n_cases}): FAILED  in {Math.Round(time, 5)} ms");
+                    printOl($"-- Test Case({case_number}): FAILED  in {Math.Round(time, 5)} ms");
                 }
                 printOl("");
+
+                return;
             }
-            printOl($"Final Evoluation: {(int)((passed_cases / n_cases) * 100)}%");
-            printOl("----------------------------------------------");
+
+            else
+            {
+                int passed_cases = 0;
+                float n_cases = 6;
+
+                for (int i = 1; i <= n_cases; i++)
+                {
+                    string curr_path = case_file_path + $"\\{i}-";
+
+                    (bool passed, double time) = runTestCaseN(ref curr_path, "Sample", i);
+
+                    if (passed)
+                    {
+                        ++passed_cases;
+                        printOl($"++ Test Case({i}/{n_cases}): PASSED in {Math.Round(time, 5)} ms");
+                    }
+                    else
+                    {
+                        printOl($"-- Test Case({i}/{n_cases}): FAILED  in {Math.Round(time, 5)} ms");
+                    }
+                    printOl("");
+                }
+                printOl($"Final Evoluation: {(int)((passed_cases / n_cases) * 100)}%");
+                printOl("----------------------------------------------");
+            }
+
+
+            
 
         }
 
-        public void runTestCasesLevel(int level, float n_cases=2)
+
+        public void runTestCasesLevel(int level, int case_number = -1)
         {
             string level_str = "";
 
@@ -478,6 +472,7 @@ namespace PalgirismValidation
                 default:
                     level_str = "";
                     break;
+
             }
 
             string case_file_path = $@"K:\C#\Algo\project\Plagiarism Validation\Test Cases\Complete\";
@@ -485,28 +480,53 @@ namespace PalgirismValidation
             printOl("----------------------------------------------");
 
             printOl($"Running Test Case Leve {level_str}:");
+           
 
-            int passed_cases = 0;
-            for (int i = 1; i <= n_cases; i++)
+            if(case_number != -1)
             {
+                string test_file_path = case_file_path + level_str + "\\" + case_number.ToString() + "-";
 
-                string test_file_path = case_file_path + level_str + "\\" + i.ToString() + "-";
-
-                (bool passed, double time) = runTestCaseN(ref test_file_path, level_str, i);
+                (bool passed, double time) = runTestCaseN(ref test_file_path, level_str, case_number);
 
                 if (passed)
                 {
-                    ++passed_cases;
-                    printOl($"++ Test Case({i}/{n_cases}): PASSED in {Math.Round(time, 5)} ms");
+                    printOl($"++ Test Case({case_number}): PASSED in {Math.Round(time, 5)} ms");
                 }
                 else
                 {
-                    printOl($"-- Test Case({i}/{n_cases}): FAILED in {Math.Round(time, 5)} ms");
+                    printOl($"-- Test Case({case_number}): FAILED in {Math.Round(time, 5)} ms");
                 }
                 printOl();
+
             }
-            printOl($"Final Evoluation: {(int)((passed_cases / n_cases) * 100)}%");
-            printOl("----------------------------------------------");
+
+            else
+            {
+                int passed_cases = 0;
+                int n_cases = 2;
+                for (int i = 1; i <= n_cases; i++)
+                {
+
+                    string test_file_path = case_file_path + level_str + "\\" + i.ToString() + "-";
+
+                    (bool passed, double time) = runTestCaseN(ref test_file_path, level_str, i);
+
+                    if (passed)
+                    {
+                        ++passed_cases;
+                        printOl($"++ Test Case({i}/{n_cases}): PASSED in {Math.Round(time, 5)} ms");
+                    }
+                    else
+                    {
+                        printOl($"-- Test Case({i}/{n_cases}): FAILED in {Math.Round(time, 5)} ms");
+                    }
+                    printOl();
+                }
+                printOl($"Final Evoluation: {(int)((passed_cases / n_cases) * 100)}%");
+                printOl("----------------------------------------------");
+
+            }
+
 
         }
     }
