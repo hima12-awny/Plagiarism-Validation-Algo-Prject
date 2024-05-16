@@ -1,4 +1,4 @@
-﻿using System.Diagnostics;
+using System.Diagnostics;
 using OfficeOpenXml;
 
 namespace PlagiarismValidation
@@ -29,10 +29,17 @@ namespace PlagiarismValidation
                 Stopwatch saveFileStopwatch = new Stopwatch();
                 saveFileStopwatch.Start();
 
+<<<<<<< HEAD
                 // sol_conntComponents_ contains All Groups
                 // so the complexity is 
                 // (G*logG) while G is number of groups
                 // sol_conntComponents_.Sort();
+=======
+                //// sol_conntComponents_ contains All Groups
+                //// so the complexty is 
+                //// (G*logG) while G is number of groups
+                //sol_conntComponents_.Sort();
+>>>>>>> a0404217630a331d78b3977388ad2cf37e8337f3
 
                 var sol_conntComponents = sol_conntComponents_;
 
@@ -49,7 +56,12 @@ namespace PlagiarismValidation
                     int con_len = sol_conntComponents.Count; // number of groups
 
                     // for each group G do this for
+<<<<<<< HEAD
                     // this for is = O(M*logM)
+=======
+                    // this for is = O(MlogM)
+
+>>>>>>> a0404217630a331d78b3977388ad2cf37e8337f3
                     // NOTE: Not all M have the same size
                     // so the more accurate is better
                     // the summation for M*logM for each Group
@@ -128,7 +140,7 @@ namespace PlagiarismValidation
                             rowNdx++;
                         }
                     }
-
+       
                     string output_result_statFile = out_path[level] + $"{case_number}-mst_file.xlsx";
 
                     worksheet.Cells.AutoFitColumns();

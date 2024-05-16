@@ -1,4 +1,4 @@
-﻿
+
 using Excel = Microsoft.Office.Interop.Excel;
 using System.Text.RegularExpressions;
 using System.Diagnostics;
