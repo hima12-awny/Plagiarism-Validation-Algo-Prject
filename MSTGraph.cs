@@ -16,6 +16,7 @@ namespace PlagiarismValidation
             edges_size = 0;
         }
 
+        // O(1)
         public void addSim(SimtyInfo sim)
         {
             // O(1)
@@ -28,7 +29,7 @@ namespace PlagiarismValidation
 
             edges[edges_size++] = component;
 
-            vertexs.Add(sim.v1);
+            vertexs.Add(sim.v1); // (1)
             vertexs.Add(sim.v2);
         }
 

@@ -22,11 +22,7 @@ namespace PlagiarismValidation
         Dictionary<int, List<int>> adjList;
         List<SimtyInfo> simsInfos;
 
-        Dictionary<
-            Tuple<int, int>, 
-            SimtyInfo
-            > dicSimsInfos;
-
+        Dictionary<Tuple<int, int>, SimtyInfo> dicSimsInfos;
 
         public List<ComponentBasedTwoItems<Tuple<List<int>, List<Tuple<int, int>>>>> connectedComponentsAndSims;
 
@@ -37,12 +33,12 @@ namespace PlagiarismValidation
             adjList = new Dictionary<int, List<int>>();
             simsInfos = new List<SimtyInfo>();
             dicSimsInfos = new Dictionary<Tuple<int, int>, SimtyInfo>();
-
             vertexsList = new List<int>();
-
             connectedComponentsAndSims = new List<ComponentBasedTwoItems<Tuple<List<int>, List<Tuple<int, int>>>>>();
         }
 
+
+        // O(1)
         public void addSim(SimtyInfo smInfo)
         {
 
@@ -90,15 +86,9 @@ namespace PlagiarismValidation
             adjList[smInfo.v2].Add(smInfo.v1);
         }
 
+        // O(N)
         public void getConnetedComponents(
-            out List<
-                ComponentBasedTwoItems<
-                    Tuple<
-                        List<int>, 
-                        List<Tuple<int, int>>
-                        >
-                    >
-                > sol_connectedComponentsAndSims
+            out List<ComponentBasedTwoItems<Tuple<List<int>, List<Tuple<int, int>>>>> sol_connectedComponentsAndSims
             )
         {
 
@@ -135,6 +125,7 @@ namespace PlagiarismValidation
             // The Whole complexity = O(N)
         }
 
+        // O(N)
         public void BFS(int source)
         {
 
@@ -211,6 +202,7 @@ namespace PlagiarismValidation
 
         }
 
+        // O(G*(Nc*Log(Nc))
         public List<List<SimtyInfo>> getMST()
         {
             // O(1)
@@ -223,6 +215,7 @@ namespace PlagiarismValidation
             // NOTE: not all Groups have the same number of Edges so 
             // summation of for each Group with size c
             // sum{ Nc*Log(Nc) }
+            // O(G*(Nc*Log(Nc))
             Parallel.For(0, n_components, i =>
             {
                 // O(1)

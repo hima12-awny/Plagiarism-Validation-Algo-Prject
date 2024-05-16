@@ -5,7 +5,6 @@ namespace PlagiarismValidation
 {
     public partial class Tests
     {
-
         public static Dictionary<string, string> out_path = new Dictionary<string, string> {
 
             { "Sample", @"K:\C#\Algo\Minimal Spaning tree\train4.1\results_files\Sample\"},
@@ -14,8 +13,6 @@ namespace PlagiarismValidation
             { "Hard", @"K:\C#\Algo\Minimal Spaning tree\train4.1\results_files\Complete\Hard\"}
 
         };
-
-
         public class GenSaveFiles
         {
 
@@ -28,18 +25,6 @@ namespace PlagiarismValidation
             {
                 Stopwatch saveFileStopwatch = new Stopwatch();
                 saveFileStopwatch.Start();
-
-<<<<<<< HEAD
-                // sol_conntComponents_ contains All Groups
-                // so the complexity is 
-                // (G*logG) while G is number of groups
-                // sol_conntComponents_.Sort();
-=======
-                //// sol_conntComponents_ contains All Groups
-                //// so the complexty is 
-                //// (G*logG) while G is number of groups
-                //sol_conntComponents_.Sort();
->>>>>>> a0404217630a331d78b3977388ad2cf37e8337f3
 
                 var sol_conntComponents = sol_conntComponents_;
 
@@ -56,12 +41,9 @@ namespace PlagiarismValidation
                     int con_len = sol_conntComponents.Count; // number of groups
 
                     // for each group G do this for
-<<<<<<< HEAD
                     // this for is = O(M*logM)
-=======
                     // this for is = O(MlogM)
 
->>>>>>> a0404217630a331d78b3977388ad2cf37e8337f3
                     // NOTE: Not all M have the same size
                     // so the more accurate is better
                     // the summation for M*logM for each Group
@@ -143,13 +125,12 @@ namespace PlagiarismValidation
        
                     string output_result_statFile = out_path[level] + $"{case_number}-mst_file.xlsx";
 
-                    worksheet.Cells.AutoFitColumns();
+                    // take more time with no benefit
+                    //worksheet.Cells.AutoFitColumns();
 
                     // Step 4: Save the Excel package to a file
                     FileInfo excelFile = new FileInfo(output_result_statFile);
-
                     excelPkg.SaveAs(excelFile);
-
                     saveFileStopwatch.Stop();
                 }
 
@@ -158,8 +139,6 @@ namespace PlagiarismValidation
                 return saveFileStopwatch.Elapsed.TotalMilliseconds;
 
             }
-
-
         }
     }
 }

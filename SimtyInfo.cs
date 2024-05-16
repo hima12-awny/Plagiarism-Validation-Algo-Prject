@@ -9,16 +9,11 @@ namespace PlagiarismValidation
         private static readonly Regex Regex_Num = new Regex(@"\d+");
 
         public int v1, v2;
-
         public int prc1, prc2, line_matches;
-
         public int line_idx;
-
         public string hprl1;
         public string hprl2;
-
         public Uri? real_h1, real_h2;
-
 
         public SimtyInfo(
             string hprl1,
@@ -48,7 +43,6 @@ namespace PlagiarismValidation
         // small number of letters consederd O(1) 
         public (int fId, int prc) ExtractFidAndPrc(string path)
         {
-
             path = path.Replace(" ", "");
             var items = path.Split('/');
 
@@ -58,7 +52,6 @@ namespace PlagiarismValidation
             [https:], [example.com], [file1], [(36%)]
     
              */
-
             int n_items = items.Length;
 
             string str_f = items[n_items - 2];
@@ -80,6 +73,7 @@ namespace PlagiarismValidation
             return (v1, v2, prc1, prc2, line_matches).GetHashCode();
         }
 
+        // O(1)
         public int CompareTo(SimtyInfo other)
         {
             int item1Comparison = other.line_matches.CompareTo(this.line_matches);

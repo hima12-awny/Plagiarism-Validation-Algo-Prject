@@ -96,29 +96,4 @@ namespace PlagiarismValidation
             return this.item3.CompareTo(other?.item3);
         }
     }
-
-
-    public class SortedComponent<TIdx> : List<ComponentBasedTwoItems<TIdx>>
-    {
-        // Override the Add method to maintain sorting
-        public new void Add(ComponentBasedTwoItems<TIdx> newComponent)
-        {
-            int index = BinarySearch(newComponent, Comparer<ComponentBasedTwoItems<TIdx>>.Default);
-            if (index < 0)
-                index = ~index;
-            Insert(index, newComponent);
-        }
-    }
-
-    public class SortedComponentThreeItems<TIdx> : List<ComponentBasedThreeItems<TIdx>>
-    {
-        // Override the Add method to maintain sorting
-        public new void Add(ComponentBasedThreeItems<TIdx> newComponent)
-        {
-            int index = BinarySearch(newComponent, Comparer<ComponentBasedThreeItems<TIdx>>.Default);
-            if (index < 0)
-                index = ~index;
-            Insert(index, newComponent);
-        }
-    }
 }
