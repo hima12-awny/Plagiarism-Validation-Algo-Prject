@@ -1,4 +1,4 @@
-﻿namespace PalgirismValidation
+﻿namespace PlagiarismValidation
 {
     public struct Edge
     {

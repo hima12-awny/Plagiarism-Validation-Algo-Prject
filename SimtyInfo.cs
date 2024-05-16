@@ -1,7 +1,7 @@
 ﻿using Microsoft.Office.Interop.Excel;
 using System.Text.RegularExpressions;
 
-namespace PalgirismValidation
+namespace PlagiarismValidation
 {
 
     public struct SimtyInfo : IComparable<SimtyInfo>

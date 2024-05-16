@@ -3,24 +3,24 @@
   "WorkspaceRootPath": "K:\\C#\\Algo\\Minimal Spaning tree\\train4.1\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{6B448F93-A6F9-481F-BD4A-00285B65F203}|Plagiarism Validation.csproj|k:\\c#\\algo\\minimal spaning tree\\train4.1\\gensavefiles.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{6B448F93-A6F9-481F-BD4A-00285B65F203}|Plagiarism Validation.csproj|solutionrelative:gensavefiles.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{6B448F93-A6F9-481F-BD4A-00285B65F203}|Plagiarism Validation.csproj|k:\\c#\\algo\\minimal spaning tree\\train4.1\\bfsgraph.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{6B448F93-A6F9-481F-BD4A-00285B65F203}|Plagiarism Validation.csproj|solutionrelative:bfsgraph.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{6B448F93-A6F9-481F-BD4A-00285B65F203}|Plagiarism Validation.csproj|k:\\c#\\algo\\minimal spaning tree\\train4.1\\tests.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{6B448F93-A6F9-481F-BD4A-00285B65F203}|Plagiarism Validation.csproj|solutionrelative:tests.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{6B448F93-A6F9-481F-BD4A-00285B65F203}|Plagiarism Validation.csproj|k:\\c#\\algo\\minimal spaning tree\\train4.1\\simtyinfo.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{6B448F93-A6F9-481F-BD4A-00285B65F203}|Plagiarism Validation.csproj|solutionrelative:simtyinfo.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{6B448F93-A6F9-481F-BD4A-00285B65F203}|Plagiarism Validation.csproj|k:\\c#\\algo\\minimal spaning tree\\train4.1\\bfsgraph.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{6B448F93-A6F9-481F-BD4A-00285B65F203}|Plagiarism Validation.csproj|solutionrelative:bfsgraph.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{6B448F93-A6F9-481F-BD4A-00285B65F203}|Plagiarism Validation.csproj|k:\\c#\\algo\\minimal spaning tree\\train4.1\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{6B448F93-A6F9-481F-BD4A-00285B65F203}|Plagiarism Validation.csproj|solutionrelative:program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{6B448F93-A6F9-481F-BD4A-00285B65F203}|Plagiarism Validation.csproj|k:\\c#\\algo\\minimal spaning tree\\train4.1\\gensavefiles.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{6B448F93-A6F9-481F-BD4A-00285B65F203}|Plagiarism Validation.csproj|solutionrelative:gensavefiles.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{6B448F93-A6F9-481F-BD4A-00285B65F203}|Plagiarism Validation.csproj|k:\\c#\\algo\\minimal spaning tree\\train4.1\\simtyinfo.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{6B448F93-A6F9-481F-BD4A-00285B65F203}|Plagiarism Validation.csproj|solutionrelative:simtyinfo.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -30,17 +30,17 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 2,
+          "SelectedChildIndex": 8,
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 4,
+              "DocumentIndex": 2,
               "Title": "Program.cs",
               "DocumentMoniker": "K:\\C#\\Algo\\Minimal Spaning tree\\train4.1\\Program.cs",
               "RelativeDocumentMoniker": "Program.cs",
               "ToolTip": "K:\\C#\\Algo\\Minimal Spaning tree\\train4.1\\Program.cs",
               "RelativeToolTip": "Program.cs",
-              "ViewState": "AQIAAA8AAAAAAAAAAAAAABcAAAAgAAAA",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAgAAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-05-12T18:20:46.46Z",
               "IsPinned": true
@@ -53,24 +53,10 @@
               "RelativeDocumentMoniker": "Tests.cs",
               "ToolTip": "K:\\C#\\Algo\\Minimal Spaning tree\\train4.1\\Tests.cs",
               "RelativeToolTip": "Tests.cs",
-              "ViewState": "AQIAABIBAAAAAAAAAAAjwCABAAAAAAAA",
+              "ViewState": "AQIAAPEBAAAAAAAAAAAmwPYBAAAQAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-05-05T11:44:33.602Z",
-              "IsPinned": true,
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "GenSaveFiles.cs",
-              "DocumentMoniker": "K:\\C#\\Algo\\Minimal Spaning tree\\train4.1\\GenSaveFiles.cs",
-              "RelativeDocumentMoniker": "GenSaveFiles.cs",
-              "ToolTip": "K:\\C#\\Algo\\Minimal Spaning tree\\train4.1\\GenSaveFiles.cs",
-              "RelativeToolTip": "GenSaveFiles.cs",
-              "ViewState": "AQIAAC4AAAAAAAAAAADwvz0AAAA1AAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-05-15T20:01:11.127Z",
-              "EditorCaption": ""
+              "IsPinned": true
             },
             {
               "$type": "Bookmark",
@@ -90,7 +76,19 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 3,
+              "Title": "GenSaveFiles.cs",
+              "DocumentMoniker": "K:\\C#\\Algo\\Minimal Spaning tree\\train4.1\\GenSaveFiles.cs",
+              "RelativeDocumentMoniker": "GenSaveFiles.cs",
+              "ToolTip": "K:\\C#\\Algo\\Minimal Spaning tree\\train4.1\\GenSaveFiles.cs",
+              "RelativeToolTip": "GenSaveFiles.cs",
+              "ViewState": "AQIAAIUAAAAAAAAAAAAmwJcAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-05-15T20:01:11.127Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
               "Title": "SimtyInfo.cs",
               "DocumentMoniker": "K:\\C#\\Algo\\Minimal Spaning tree\\train4.1\\SimtyInfo.cs",
               "RelativeDocumentMoniker": "SimtyInfo.cs",
@@ -98,18 +96,17 @@
               "RelativeToolTip": "SimtyInfo.cs",
               "ViewState": "AQIAAAwAAAAAAAAAAAAjwBgAAAAZAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-05-15T19:59:16.886Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-05-15T19:59:16.886Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 0,
               "Title": "BFSGraph.cs",
               "DocumentMoniker": "K:\\C#\\Algo\\Minimal Spaning tree\\train4.1\\BFSGraph.cs",
               "RelativeDocumentMoniker": "BFSGraph.cs",
               "ToolTip": "K:\\C#\\Algo\\Minimal Spaning tree\\train4.1\\BFSGraph.cs",
               "RelativeToolTip": "BFSGraph.cs",
-              "ViewState": "AQIAALsAAAAAAAAAAADgv9UAAAAiAAAA",
+              "ViewState": "AQIAAPMAAAAAAAAAAAAAAPkAAABFAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-05-14T21:11:27.164Z",
               "EditorCaption": ""

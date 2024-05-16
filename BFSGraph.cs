@@ -1,7 +1,7 @@
 ﻿
 using System.Collections.Concurrent;
 
-namespace PalgirismValidation
+namespace PlagiarismValidation
 {
 
     public enum Color
@@ -114,9 +114,9 @@ namespace PalgirismValidation
 
 
             // O(V + E)
-            // V: the enumber of vertexs
-            // E: number of edges (N) most beggest one
-            // so Complexty is O(E)
+            // V: the number of vertexs
+            // E: number of edges (N) most biggest one
+            // so complexity is O(E)
 
             foreach (var v in vertexsList)
             {
@@ -129,10 +129,10 @@ namespace PalgirismValidation
             sol_connectedComponentsAndSims = connectedComponentsAndSims;
 
 
-            // so The Whole Complexty is O(E) + O(V) = O(E) -> E Is bigger Than V
+            // so The Whole complexity is O(E) + O(V) = O(E) -> E Is bigger Than V
             // E is the number of Edges = N
 
-            // The Whole Complexty = O(N)
+            // The Whole complexity = O(N)
         }
 
         public void BFS(int source)
@@ -179,7 +179,7 @@ namespace PalgirismValidation
                         // O(1)
                         connectedSim.Add(tempTuple);
 
-                        totalSims += (tempSim.prc1 + tempSim.prc2);
+                        totalSims += tempSim.prc1 + tempSim.prc2;
                     }
 
 
@@ -190,12 +190,12 @@ namespace PalgirismValidation
 
             double avgSim = Math.Round(totalSims / (connectedSim.Count * 2), 1);
 
-
+            // insert in list O(1)
             connectedComponentsAndSims.Add(
                 new ComponentBasedTwoItems<
                     Tuple<
                         List<int>,              // connected ids
-                        List<Tuple<int, int>>> // connetced edges
+                        List<Tuple<int, int>>>  // connected edges
                         >(
                             Tuple.Create(connectedComponent, connectedSim),
                             avgSim,
@@ -205,35 +205,44 @@ namespace PalgirismValidation
 
 
             // sum = O(V + E) 
-            // O(V + E) = O(E) -> (E begger than V)
+            // O(V + E) = O(E) -> (E bigger than V)
             // and E is number of Edges so E = N
-            // final Complexty is O(N)
+            // final Complexity is O(N)
 
         }
 
         public List<List<SimtyInfo>> getMST()
         {
+            // O(1)
             int n_components = connectedComponentsAndSims.Count();
 
             // Use ConcurrentDictionary to store results
             ConcurrentDictionary<int, List<SimtyInfo>> resultsDict = new ConcurrentDictionary<int, List<SimtyInfo>>();
 
-
-            // Parallelize the loop
+            // for each group get its MST 
+            // NOTE: not all Groups have the same number of Edges so 
+            // summation of for each Group with size c
+            // sum{ Nc*Log(Nc) }
             Parallel.For(0, n_components, i =>
             {
+                // O(1)
                 List<Tuple<int, int>> connectedSimsLocal = this.connectedComponentsAndSims[i].idx.Item2;
 
                 MSTGraph mstGraph = new MSTGraph(connectedSimsLocal.Count);
 
+                // MAX O(E) the number of Edges
+                // O(N)
                 foreach (var edge in connectedSimsLocal)
                 {
+                    // O(1)
                     mstGraph.addSim(dicSimsInfos[edge]);
                 }
 
+                // O(N*log(N))
                 List<SimtyInfo> newSimInfos = mstGraph.MaximumSpanningTree();
 
                 // Add newSimInfos to resultsDict based on index i
+                // O(1)
                 resultsDict.TryAdd(i, newSimInfos);
             });
 
@@ -246,6 +255,9 @@ namespace PalgirismValidation
                     results.Add(simtyInfos);
                 }
             }
+
+            // The Result = O(G*(N*log(N))) + O(N) = O(G*(N*log(N)))
+            // G the number of Groups.
 
             return results;
         }

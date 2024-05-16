@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("Plagiarism Validation")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+d855a7e61c0f4e8ad92414355d4f56d7128575b8")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+2f30ce1558b9ee8894ce7898d66e36444e66f96e")]
 [assembly: System.Reflection.AssemblyProductAttribute("Plagiarism Validation")]
 [assembly: System.Reflection.AssemblyTitleAttribute("Plagiarism Validation")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

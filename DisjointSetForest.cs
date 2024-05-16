@@ -1,4 +1,4 @@
-﻿namespace PalgirismValidation
+﻿namespace PlagiarismValidation
 {
     public class DisjointSetForest
     {
@@ -6,8 +6,10 @@
 
         public DisjointSetForest(HashSet<int> vrtx)
         {
+
             parent = new Dictionary<int, int>();
 
+            // O(V)
             foreach (int v in vrtx)
             {
                 parent[v] = v;

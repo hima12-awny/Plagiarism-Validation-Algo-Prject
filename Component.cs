@@ -1,6 +1,6 @@
 ﻿using System.Collections;
 
-namespace PalgirismValidation
+namespace PlagiarismValidation
 {
 
     public class ComponentBasedTwoItems<TIdx> : IComparable<ComponentBasedTwoItems<TIdx>>
