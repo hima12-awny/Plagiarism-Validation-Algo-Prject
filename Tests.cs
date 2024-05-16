@@ -208,11 +208,8 @@ namespace PlagiarismValidation
             printO($"+ Load Data from file... ");
 
             Stopwatch loadDataStopWatch = new Stopwatch();
-
             loadDataStopWatch.Start();
-
             int rows = 0;
-
             SimtyInfo[] temp_simtyInfos;
 
             using (ExcelPackage excelPkg = new ExcelPackage(new FileInfo(input_case_path)))
@@ -220,9 +217,7 @@ namespace PlagiarismValidation
 
                 // O(1)
                 ExcelWorksheet ws = excelPkg.Workbook.Worksheets[0];
-
                 rows = ws.Dimension.Rows;
-
                 temp_simtyInfos = new SimtyInfo[rows - 1];
 
                 // For each N
@@ -270,11 +265,9 @@ namespace PlagiarismValidation
             }
 
             // get connected components
-
             List<ComponentBasedTwoItems<Tuple<List<int>, List<Tuple<int, int>>>>> sol_conneted_compnents;
             graph.getConnetedComponents(out sol_conneted_compnents);
-
-
+            
             // sol_conntComponents_ contains All Groups
             // so the complexty is 
             // (G*logG) while G is number of groups
